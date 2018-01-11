@@ -37,9 +37,9 @@ export class Root extends PureComponent<RootProps, RootState> {
             return (
                 <View flex={1}>
                     {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-                    {Platform.OS === 'android' && (
+                    {/* {Platform.OS === 'android' && (
                         <View height={24} backgroundColor="rgba(0,0,0,0.2)" />
-                    )}
+                    )} */}
                     <Navigator
                         navigation={addNavigationHelpers({
                             dispatch: this.context.store.dispatch,
