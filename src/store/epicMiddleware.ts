@@ -3,6 +3,7 @@ import { combineEpics, Epic, createEpicMiddleware } from 'redux-observable'
 import { AppState, ReduxAction, EpicDependancies } from './types'
 import pushNotificationEpic from './pushNotification/epic'
 import bootEpic from './boot/epic'
+import authEpic from './auth/epic'
 // Import epic here
 
 import { dependencies } from './epicDependencies'
@@ -10,6 +11,7 @@ import { dependencies } from './epicDependencies'
 const epics = [
     pushNotificationEpic,
     bootEpic,
+    authEpic,
     // Insert epic here
 ]
 

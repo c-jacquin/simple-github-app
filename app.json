@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "react-native-ts-boilerplate",
-    "description": "A react native typescript expo boilerplate",
-    "slug": "react-native-ts-boilerplate",
+    "name": "github-simple",
+    "description": "simple github app",
+    "slug": "github-simple",
     "privacy": "public",
     "sdkVersion": "24.0.0",
     "platforms": ["ios", "android"],

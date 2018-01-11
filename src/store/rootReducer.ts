@@ -7,6 +7,7 @@ import languageReducer from './language/reducer'
 import navigationReducer from './navigation/reducer'
 import pushNotificationReducer from './pushNotification/reducer'
 import bootReducer from './boot/reducer'
+import authReducer from './auth/reducer'
 // Import reducer here
 
 const rootReducer = combineReducers<AppState>({
@@ -28,6 +29,14 @@ const rootReducer = combineReducers<AppState>({
         pushNotificationReducer
     ),
     boot: bootReducer,
+    auth: persistReducer(
+        {
+            key: 'auth',
+            blacklist: ['pending', 'isLoggedIn'],
+            storage,
+        },
+        authReducer
+    ),
     // Insert reducer here
 })
 

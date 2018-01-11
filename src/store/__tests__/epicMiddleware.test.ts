@@ -19,6 +19,7 @@ describe('epic middleware', () => {
                 'languageApi',
                 'pushNotificationApi',
                 'bootApi',
+                'authApi',
                 // Insert api here
             ]
             expect(Object.keys(dependencies)).toEqual(depKey)

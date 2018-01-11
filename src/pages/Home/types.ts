@@ -1,9 +1,15 @@
-export interface HomeProps {}
+import { ActionCreator } from 'redux'
+import { ReduxAction } from 'store/types'
 
-export interface HomeState {
-    items: any[]
+export interface HomeConnectedProps {
+    token: string | undefined
 }
 
-export interface HomeActionCreators {}
+export interface HomeProps extends HomeConnectedProps, HomeActionCreators {}
 
-export interface HomeConnectedProps {}
+export interface HomeActionCreators {
+    goTo: ActionCreator<ReduxAction>
+    auth: ActionCreator<ReduxAction>
+}
+
+export interface HomeState {}

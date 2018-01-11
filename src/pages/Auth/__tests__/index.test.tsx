@@ -6,9 +6,9 @@ import configureStore from 'redux-mock-store'
 
 const mockStore = configureStore()
 
-import Home from '../index'
+import Auth from '../index'
 
-describe('Home', () => {
+describe('Auth', () => {
     let store = mockStore({})
 
     beforeEach(() => {
@@ -18,7 +18,7 @@ describe('Home', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
             <Provider store={store}>
-                <Home />
+                <Auth />
             </Provider>
         )
         expect(tree).toBeDefined()
