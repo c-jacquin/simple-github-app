@@ -17,7 +17,7 @@ const bootEpic: MyEpic = (action$, store, { bootApi, languageApi }) => {
         flatMap(result => [
             languagesActions.getLocaleSuccess(result),
             bootActions.bootstrapSuccess(),
-            pushActions.registerPush(),
+            // pushActions.registerPush(),
         ])
     )
 }

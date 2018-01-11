@@ -4,7 +4,7 @@ import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 
 import { AppState, ReduxAction } from 'store/types'
-{{#if includedNavigator}}
+{{#if hasNav}}
 import Navigator from './{{ name }}.nav'
 {{/if}}
 {{#if wantMessages}}
@@ -15,7 +15,7 @@ import { {{ pascal name }}Props, {{ pascal name }}ConnectedProps, {{ pascal name
 const {{ pascal name }}: StatelessComponent<{{ pascal name }}Props> = ({
 
 }) => (
-    {{#if includedNavigator}}
+    {{#if hasNav}}
     <Navigator/>
     {{else}}
     <View/>

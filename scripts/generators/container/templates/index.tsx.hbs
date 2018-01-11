@@ -4,7 +4,7 @@ import { connect, MapStateToProps, MapDispatchToProps } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 
 import { AppState, ReduxAction } from 'store/types'
-{{#if includedNavigator}}
+{{#if hasNav}}
 import Navigator from './{{ name }}.nav'
 {{/if}}
 {{#if wantMessages}}
@@ -16,7 +16,7 @@ export class {{ pascal name }} extends Component<{{ pascal name }}Props, {{ pasc
 
     render() {
         return (
-            {{#if includedNavigator}}
+            {{#if hasNav}}
             <Navigator/>
             {{else}}
             <View/>

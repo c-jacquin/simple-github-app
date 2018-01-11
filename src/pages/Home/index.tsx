@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
-import { ScrollView, Text } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect, MapStateToProps, MapDispatchToProps } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { FormattedMessage } from 'react-intl-native-ts'
+import { NavigationActions } from 'react-navigation'
 
 import { AppState, ReduxAction } from 'store/types'
-
+import { selectToken, auth } from 'store/auth'
+// import Navigator from './Home.nav'
+import messages from './messages'
 import {
     HomeProps,
     HomeState,
     HomeConnectedProps,
     HomeActionCreators,
 } from './types'
-import messages from './messages'
 
 export class Home extends Component<HomeProps, HomeState> {
-    static navigationOptions = {
-        title: 'Home',
+    componentWillMount() {
+        if (!this.props.token) {
+            this.props.goTo({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'Auth' })],
+            })
+        }
     }
 
     render() {
         return (
-            <ScrollView>
-                <FormattedMessage {...messages.title} />
-            </ScrollView>
+            <View>
+                <Text>HOME</Text>
+            </View>
         )
     }
 }
@@ -32,15 +38,22 @@ const mapStateToProps: MapStateToProps<
     HomeConnectedProps,
     HomeProps,
     AppState
-> = state => ({})
+> = state => ({
+    token: selectToken(state),
+})
 
 const mapDispatchToProps: MapDispatchToProps<HomeActionCreators, HomeProps> = (
     dispatch: Dispatch<ReduxAction>
-) => bindActionCreators({}, dispatch)
+) =>
+    bindActionCreators(
+        {
+            goTo: NavigationActions.reset,
+            auth,
+        },
+        dispatch
+    )
 
-export default connect<
-    HomeConnectedProps,
-    HomeActionCreators,
-    HomeProps,
-    AppState
->(mapStateToProps, mapDispatchToProps)(Home)
+export default connect<HomeConnectedProps, HomeActionCreators, HomeProps>(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home)

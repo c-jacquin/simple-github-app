@@ -77,7 +77,7 @@ module.exports = {
             }
         }
 
-        data.includedNavigator = data.includedNavigator !== 'none'
+        data.hasNav = data.includedNavigator !== 'none'
 
         const actions = [{
             type: 'add',

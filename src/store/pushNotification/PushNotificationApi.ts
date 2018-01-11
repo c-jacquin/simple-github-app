@@ -2,7 +2,7 @@ import { Permissions, Notifications } from 'expo'
 import { fromPromise } from 'rxjs/observable/fromPromise'
 import { of as observableOf } from 'rxjs/observable/of'
 import { Observable } from 'rxjs/Observable'
-import { mergeMap } from 'rxjs/operators'
+import { mergeMap, catchError } from 'rxjs/operators'
 
 import config from 'config'
 
@@ -16,19 +16,18 @@ export class PushNotificationApi {
     register(): Observable<Response> {
         return this.getToken().pipe(
             mergeMap(token => {
-                return fetch(config.PUSH_ENDPOINT, {
+                return fetch(config.BASE_URL + config.PUSH_ENDPOINT, {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        token: {
-                            value: token,
-                        },
+                        token,
                     }),
                 })
-            })
+            }),
+            catchError(observableOf)
         )
     }
 

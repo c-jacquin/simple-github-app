@@ -1,3 +1,4 @@
 {
-    "ENV": "prod"
+    "ENV": "production",
+    "BASE_URL": "http://localhost:3000"
 }
