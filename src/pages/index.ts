@@ -15,6 +15,7 @@ export default StackNavigator(
         // Insert pages here
     },
     {
+        headerMode: 'none',
         initialRouteName: 'Home',
     }
 )
