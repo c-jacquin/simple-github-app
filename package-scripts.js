@@ -5,6 +5,9 @@ const {
 
 module.exports = {
   scripts: {
+    foo: {
+        script: "rndebugger-open --open --expo"
+    },
     default: {
         description: 'transpile typescript and watch for change',
         script: concurrent({

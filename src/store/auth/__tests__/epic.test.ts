@@ -4,7 +4,7 @@ import { createEpicMiddleware } from 'redux-observable'
 import { dependencies } from '../../epicDependencies'
 import { AppState, ReduxAction, EpicDependancies } from '../../types'
 import * as authAction from '../actions'
-import authEpic from '../epic'
+import { authEpic } from '../epic'
 
 describe('auth epic', () => {
     const epicMiddleware = createEpicMiddleware<

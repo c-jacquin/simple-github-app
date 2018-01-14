@@ -6,9 +6,9 @@ import configureStore from 'redux-mock-store'
 
 const mockStore = configureStore()
 
-import Home from '../index'
+import NavigationMenu from '../index'
 
-describe('Home', () => {
+describe('NavigationMenu', () => {
     let store = mockStore({})
 
     beforeEach(() => {
@@ -18,7 +18,7 @@ describe('Home', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
             <Provider store={store}>
-                <Home />
+                <NavigationMenu />
             </Provider>
         )
         expect(tree).toBeDefined()

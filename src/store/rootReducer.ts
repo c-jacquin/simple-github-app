@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { apolloReducer } from 'apollo-cache-redux'
 
 import { AppState } from './types'
 import languageReducer from './language/reducer'
@@ -11,6 +12,7 @@ import authReducer from './auth/reducer'
 // Import reducer here
 
 const rootReducer = combineReducers<AppState>({
+    apollo: apolloReducer,
     language: persistReducer(
         {
             key: 'language',

@@ -6,9 +6,9 @@ import configureStore from 'redux-mock-store'
 
 const mockStore = configureStore()
 
-import GraphqlProvider from '../index'
+import App from '../index'
 
-describe('GraphqlProvider', () => {
+describe('App', () => {
     let store = mockStore({})
 
     beforeEach(() => {
@@ -18,7 +18,7 @@ describe('GraphqlProvider', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
             <Provider store={store}>
-                <GraphqlProvider />
+                <App />
             </Provider>
         )
         expect(tree).toBeDefined()
