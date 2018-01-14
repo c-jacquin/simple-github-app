@@ -15,6 +15,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "apollo-cache-redux": "0.1.0-alpha.7",
     "apollo-client-preset": "^1.0.6",
     "expo": "24.0.2",
     "glamorous-native": "^1.2.1",
@@ -71,9 +72,10 @@
     "nps-utils": "^1.5.0",
     "plop": "^1.9.1",
     "prettier": "^1.9.2",
+    "react-native-debugger-open": "^0.3.15",
     "react-test-renderer": "16.2.0",
     "redux-mock-store": "^1.4.0",
-    "remap-istanbul": "^0.9.5",
+    "remap-istanbul": "^0.10.0",
     "remote-redux-devtools": "^0.5.12",
     "rimraf": "^2.6.2",
     "standard-version": "^4.3.0",

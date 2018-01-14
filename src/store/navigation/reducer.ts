@@ -3,7 +3,7 @@ import Navigator from 'pages'
 import { NavigationState } from './types'
 
 export const initialState: NavigationState = Navigator.router.getStateForAction(
-    Navigator.router.getActionForPathAndParams('Auth'),
+    Navigator.router.getActionForPathAndParams('App'),
     null
 )
 

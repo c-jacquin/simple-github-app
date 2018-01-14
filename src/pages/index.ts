@@ -1,7 +1,7 @@
 import { StackNavigator } from 'react-navigation'
 
 import Auth from 'pages/Auth'
-import Home from 'pages/Home'
+import App from 'pages/App'
 // Import pages here
 
 export default StackNavigator(
@@ -9,13 +9,13 @@ export default StackNavigator(
         Auth: {
             screen: Auth,
         },
-        Home: {
-            screen: Home,
+        App: {
+            screen: App,
         },
         // Insert pages here
     },
     {
         headerMode: 'none',
-        initialRouteName: 'Home',
+        initialRouteName: 'App',
     }
 )

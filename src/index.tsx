@@ -6,7 +6,6 @@ import { PersistGate } from 'redux-persist/es/integration/react'
 
 import configureStore from 'store/index'
 
-import GraphqlProvider from 'containers/GraphqlProvider'
 import LanguageProvider from 'containers/LanguageProvider'
 import Root from 'containers/Root'
 
@@ -20,13 +19,11 @@ export class App extends React.Component<{}, {}> {
         return (
             <Provider store={store}>
                 <PersistGate loading={<AppLoading />} persistor={persistor}>
-                    <GraphqlProvider>
-                        <LanguageProvider messages={translationMessages}>
-                            <ThemeProvider theme={theme}>
-                                <Root />
-                            </ThemeProvider>
-                        </LanguageProvider>
-                    </GraphqlProvider>
+                    <LanguageProvider messages={translationMessages}>
+                        <ThemeProvider theme={theme}>
+                            <Root />
+                        </ThemeProvider>
+                    </LanguageProvider>
                 </PersistGate>
             </Provider>
         )

@@ -26,6 +26,11 @@ const authReducer: Reducer<AuthState> = (state = initialState, action) => {
                 ...state,
                 pending: false,
             }
+        case authActions.LOGOUT_SUCCESS:
+            return {
+                ...state,
+                token: undefined,
+            }
         default:
             return state
     }
