@@ -60,19 +60,19 @@ declare module 'glamorous-native' {
     export const View: React.StatelessComponent<ViewStyle & ExtraGlamorousProps & ViewProperties>
 
     interface Glamorous {
-        <Props, Theme>(component: React.StatelessComponent<Props>, options: GlamorousOptions<Props>): (style: AllStyles | DynamicStyles<Props, AllStyles, Theme>) => React.StatelessComponent<Props & ExtraGlamorousProps & AllStyles>
-        flatList: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & FlatListProperties<any>>
-        image: <Props, Theme>(style: ImageStyle, dynamicStyles?: DynamicStyles<Props, ImageStyle, Theme>) => React.StatelessComponent<ImageStyle & ExtraGlamorousProps & ImageProperties>
-        listView: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & ListViewProperties>
-        scrollView: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & ScrollViewProperties>
-        sectionList: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & SectionListProperties<any>>
-        text: <Props, Theme>(style: TextStyle, dynamicStyles?: DynamicStyles<Props, TextStyle, Theme>) => React.StatelessComponent<TextStyle & ExtraGlamorousProps & TextProperties>
-        textInput: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TextInputProperties>
-        touchableHighlight: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableHighlightProperties>
-        touchableNativeFeedback: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props,ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableNativeFeedbackProperties>
-        touchableOpacity: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableOpacityProperties>
-        touchableWithoutFeedback: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableWithoutFeedbackProperties>
-        view: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & ViewProperties>
+        <Props, Theme>(component: React.StatelessComponent<Props>, options: GlamorousOptions<Props>): (style: AllStyles | DynamicStyles<Props, AllStyles, Theme>) => React.StatelessComponent<Props & ExtraGlamorousProps & AllStyles & Props>
+        flatList: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & FlatListProperties<any> & Props>
+        image: <Props, Theme>(style: ImageStyle, dynamicStyles?: DynamicStyles<Props, ImageStyle, Theme>) => React.StatelessComponent<ImageStyle & ExtraGlamorousProps & ImageProperties & Props>
+        listView: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & ListViewProperties & Props>
+        scrollView: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & ScrollViewProperties & Props>
+        sectionList: <Props, Theme>(style: ScrollViewStyle, dynamicStyles?: DynamicStyles<Props, ScrollViewStyle, Theme>) => React.StatelessComponent<ScrollViewStyle & ExtraGlamorousProps & SectionListProperties<any> & Props>
+        text: <Props, Theme>(style: TextStyle, dynamicStyles?: DynamicStyles<Props, TextStyle, Theme>) => React.StatelessComponent<TextStyle & ExtraGlamorousProps & TextProperties & Props>
+        textInput: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TextInputProperties & Props>
+        touchableHighlight: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableHighlightProperties & Props>
+        touchableNativeFeedback: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props,ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableNativeFeedbackProperties & Props>
+        touchableOpacity: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableOpacityProperties & Props>
+        touchableWithoutFeedback: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & TouchableWithoutFeedbackProperties & Props>
+        view: <Props, Theme>(style: ViewStyle, dynamicStyles?: DynamicStyles<Props, ViewStyle, Theme>) => React.StatelessComponent<ViewStyle & ExtraGlamorousProps & ViewProperties & Props>
     }
 
     const glamorous: Glamorous

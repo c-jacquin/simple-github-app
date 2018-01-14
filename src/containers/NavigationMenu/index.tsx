@@ -1,37 +1,50 @@
-import React, { SFC } from 'react'
+import React, { SFC, Fragment } from 'react'
 import {
     ScrollView,
     SafeAreaView,
     StyleSheet,
     Text,
     Button,
+    View,
 } from 'react-native'
 import { DrawerItems } from 'react-navigation'
 import { connect, MapDispatchToProps } from 'react-redux'
-import { graphql } from 'react-apollo'
+import { graphql, ChildProps } from 'react-apollo'
 import gql from 'graphql-tag'
 import { bindActionCreators } from 'redux'
+
+import Avatar from 'components/Avatar'
 
 import { AppState, ReduxAction } from 'store/types'
 import * as authActions from 'store/auth'
 import messages from './messages'
-import { NavigationMenuProps, NavigationMenuActionCreators } from './types'
+import {
+    NavigationMenuProps,
+    NavigationMenuActionCreators,
+    Viewer,
+} from './types'
 
 const styles = StyleSheet.create({
-    container: {
+    safe: {
         flex: 1,
     },
 })
 
-export const NavigationMenu: SFC<NavigationMenuProps> = ({
-    logout,
-    ...otherProps
-}) => (
+export const NavigationMenu: SFC<
+    NavigationMenuProps & ChildProps<{}, Viewer>
+> = ({ logout, data, ...otherprops }) => (
     <ScrollView>
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.safe}>
+            {data &&
+                data.viewer && (
+                    <Avatar
+                        source={data.viewer.avatarUrl}
+                        title={data.viewer.name}
+                        rounded={true}
+                    />
+                )}
             <Button title={'logout'} onPress={logout} />
-            <Text>{JSON.stringify(otherProps)}</Text>
-            <DrawerItems {...otherProps} />
+            <DrawerItems {...otherprops} />
         </SafeAreaView>
     </ScrollView>
 )
