@@ -19,7 +19,7 @@ export const authEpic: MyEpic = (action$, store, { authApi }) => {
                 actions: [NavigationActions.navigate({ routeName: 'Home' })],
             }),
             authActions.authSuccess(data),
-        ])
+        ]),
     )
 }
 
@@ -32,7 +32,7 @@ export const logoutEpic: MyEpic = action$ => {
                 actions: [NavigationActions.navigate({ routeName: 'Auth' })],
             }),
             authActions.logoutSuccess(),
-        ])
+        ]),
     )
 }
 

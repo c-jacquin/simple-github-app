@@ -9,7 +9,7 @@ describe('Language Provider', () => {
             .create(
                 <LanguageProvider messages={{}}>
                     <div>test</div>
-                </LanguageProvider>
+                </LanguageProvider>,
             )
             .toJSON()
         expect(tree).toMatchSnapshot()
@@ -18,7 +18,7 @@ describe('Language Provider', () => {
     describe('mapStateToProps function', () => {
         it('should return an object with the locale', () => {
             expect(
-                mapStateToProps(initialState, { messages: [], children: {} })
+                mapStateToProps(initialState, { messages: [], children: {} }),
             ).toEqual({
                 locale: initialState.language.locale,
             })

@@ -10,7 +10,7 @@ export const initialState: PushNotificationState = {
 
 const pushNotificationReducer: Reducer<PushNotificationState> = (
     state = initialState,
-    action
+    action,
 ) => {
     switch (action.type) {
         case pushActions.REGISTER_PUSH_SUCCESS:

@@ -4,12 +4,12 @@ import { NavigationState } from './types'
 
 export const initialState: NavigationState = Navigator.router.getStateForAction(
     Navigator.router.getActionForPathAndParams('App'),
-    null
+    null,
 )
 
 const navigationReducer: Reducer<NavigationState> = (
     state = initialState,
-    action
+    action,
 ) => {
     return Navigator.router.getStateForAction(action, state)
 }

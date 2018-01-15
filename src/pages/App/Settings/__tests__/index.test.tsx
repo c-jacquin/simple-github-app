@@ -19,7 +19,7 @@ describe('Settings', () => {
         const tree = renderer.create(
             <Provider store={store}>
                 <Settings />
-            </Provider>
+            </Provider>,
         )
         expect(tree).toBeDefined()
     })

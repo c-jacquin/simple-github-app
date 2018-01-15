@@ -12,7 +12,7 @@ export const initialState: LanguageState = {
 
 const languageReducer: Reducer<LanguageState> = (
     state = initialState,
-    action: ReduxAction
+    action: ReduxAction,
 ) => {
     switch (action.type) {
         case LanguageActions.GET_LOCALE_PENDING:

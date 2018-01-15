@@ -30,13 +30,13 @@ const mapStateToProps: MapStateToProps<
 > = state => ({})
 
 const mapDispatchToProps: MapDispatchToProps<AuthActionCreators, AuthProps> = (
-    dispatch: Dispatch<ReduxAction>
+    dispatch: Dispatch<ReduxAction>,
 ) =>
     bindActionCreators(
         {
             login: authActions.auth,
         },
-        dispatch
+        dispatch,
     )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth)

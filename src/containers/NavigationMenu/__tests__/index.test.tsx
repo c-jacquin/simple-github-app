@@ -19,7 +19,7 @@ describe('NavigationMenu', () => {
         const tree = renderer.create(
             <Provider store={store}>
                 <NavigationMenu />
-            </Provider>
+            </Provider>,
         )
         expect(tree).toBeDefined()
     })

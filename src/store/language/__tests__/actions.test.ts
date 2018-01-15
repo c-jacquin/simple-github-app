@@ -15,7 +15,7 @@ describe('languages actions', () => {
         }
 
         expect(languagesActions.getLocaleSuccess('test')).toEqual(
-            expectedAction
+            expectedAction,
         )
     })
 

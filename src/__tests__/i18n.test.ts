@@ -14,7 +14,7 @@ import config from '../config'
 describe('translation messages', () => {
     it('should have the supportd languages as property', () => {
         expect(Object.keys(translationMessages)).toEqual(
-            config.LANGUAGE.SUPPORTED_LOCALES
+            config.LANGUAGE.SUPPORTED_LOCALES,
         )
     })
 })

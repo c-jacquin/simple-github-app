@@ -6,7 +6,7 @@ describe('navigation reducer', () => {
         expect(
             navigationReducer(appState.navigation, {
                 type: 'TEST',
-            })
+            }),
         ).toEqual(appState.navigation)
     })
 })

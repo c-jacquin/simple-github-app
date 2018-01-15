@@ -7,7 +7,7 @@ describe('boot reducer', () => {
         expect(
             bootReducer(appState.boot, {
                 type: 'TEST',
-            })
+            }),
         ).toEqual(appState.boot)
     })
 
@@ -20,7 +20,7 @@ describe('boot reducer', () => {
 
     it('should set loading to true when BOOTSTRAP_PENDING', () => {
         expect(
-            bootReducer(appState.boot, bootActions.bootstrapSuccess())
+            bootReducer(appState.boot, bootActions.bootstrapSuccess()),
         ).toEqual({
             ...appState.boot,
             loading: false,

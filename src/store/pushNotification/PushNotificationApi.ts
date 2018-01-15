@@ -27,7 +27,7 @@ export class PushNotificationApi {
                     }),
                 })
             }),
-            catchError(observableOf)
+            catchError(observableOf),
         )
     }
 

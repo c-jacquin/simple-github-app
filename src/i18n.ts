@@ -22,13 +22,13 @@ export interface TranslationMessages {
 
 export const formatTranslationMessages = (
     locale: string,
-    messages: any
+    messages: any,
 ): TranslationMessages => {
     const defaultFormattedMessages: any =
         locale !== config.LANGUAGE.DEFAULT_LOCALE
             ? formatTranslationMessages(
                   config.LANGUAGE.DEFAULT_LOCALE,
-                  enTranslationMessages
+                  enTranslationMessages,
               )
             : {}
     const formattedMessages: TranslationMessages | any = {}

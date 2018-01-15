@@ -7,7 +7,7 @@ describe('pushNotification reducer', () => {
         expect(
             pushNotificationReducer(appState.pushNotification, {
                 type: 'TEST',
-            })
+            }),
         ).toEqual(appState.pushNotification)
     })
 
@@ -15,8 +15,8 @@ describe('pushNotification reducer', () => {
         expect(
             pushNotificationReducer(
                 appState.pushNotification,
-                pushNotificationActions.registerPushSuccess()
-            )
+                pushNotificationActions.registerPushSuccess(),
+            ),
         ).toEqual({
             ...appState.pushNotification,
             register: true,
@@ -34,8 +34,8 @@ describe('pushNotification reducer', () => {
         expect(
             pushNotificationReducer(
                 appState.pushNotification,
-                pushNotificationActions.newPushNotification(pushNotification)
-            )
+                pushNotificationActions.newPushNotification(pushNotification),
+            ),
         ).toEqual({
             ...appState.pushNotification,
             data: [pushNotification],

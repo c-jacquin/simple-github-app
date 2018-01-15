@@ -14,7 +14,7 @@ describe('pushNotification actions', () => {
         }
 
         expect(pushNotificationActions.registerPushSuccess()).toEqual(
-            expectedAction
+            expectedAction,
         )
     })
 
@@ -32,7 +32,7 @@ describe('pushNotification actions', () => {
         }
 
         expect(pushNotificationActions.newPushNotification(payload)).toEqual(
-            expectedAction
+            expectedAction,
         )
     })
 })
