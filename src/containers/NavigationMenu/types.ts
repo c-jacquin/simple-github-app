@@ -1,5 +1,6 @@
 import { ActionCreator } from 'redux'
 import { ReduxAction } from 'store/types'
+import { ChildProps } from 'react-apollo'
 
 export interface Viewer {
     viewer: {
@@ -9,7 +10,9 @@ export interface Viewer {
     }
 }
 
-export interface NavigationMenuProps extends NavigationMenuActionCreators {
+export interface NavigationMenuProps
+    extends NavigationMenuActionCreators,
+        ChildProps<{}, Viewer> {
     navigation?: any
 }
 
