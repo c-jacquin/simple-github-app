@@ -39,9 +39,4 @@ const mapDispatchToProps: MapDispatchToProps<AuthActionCreators, AuthProps> = (
         dispatch
     )
 
-export default connect<
-    AuthConnectedProps,
-    AuthActionCreators,
-    AuthProps,
-    AppState
->(mapStateToProps, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

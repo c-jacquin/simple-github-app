@@ -35,6 +35,4 @@ export const mapStateToProps: MapStateToProps<
     locale: languageStore.selectLocale(state),
 })
 
-export default connect<LanguageConnectedProps, any, LanguageProps, AppState>(
-    mapStateToProps
-)(LanguageProvider)
+export default connect(mapStateToProps)(LanguageProvider)
