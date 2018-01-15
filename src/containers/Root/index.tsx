@@ -73,9 +73,4 @@ const mapDispatchToProps: MapDispatchToProps<
         dispatch
     )
 
-export default connect<
-    RootConnectedProps,
-    RootActionCreators,
-    RootProps,
-    AppState
->(mapStateToProps, mapDispatchToProps)(Root)
+export default connect(mapStateToProps, mapDispatchToProps)(Root)
