@@ -1,17 +1,12 @@
 import React, { SFC, Fragment } from 'react'
-import {
-    ScrollView,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    Button,
-    View,
-} from 'react-native'
+import { ScrollView, SafeAreaView, StyleSheet, Button } from 'react-native'
 import { DrawerItems } from 'react-navigation'
 import { connect, MapDispatchToProps } from 'react-redux'
-import { graphql, ChildProps } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { bindActionCreators } from 'redux'
+import { Text, View } from 'glamorous-native'
+import { Grid, Row, Col } from 'react-native-easy-grid'
 
 import Avatar from 'components/Avatar'
 
@@ -30,23 +25,77 @@ const styles = StyleSheet.create({
     },
 })
 
+const VIEWER_QUERY = gql`
+    {
+        viewer {
+            id
+            name
+            avatarUrl
+            company
+            location
+            followers {
+                totalCount
+            }
+            repositories(
+                last: 100
+                orderBy: { field: STARGAZERS, direction: DESC }
+            ) {
+                totalCount
+                edges {
+                    node {
+                        stargazers {
+                            totalCount
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
+
 export const NavigationMenu: SFC<NavigationMenuProps> = ({
     logout,
     data,
-    ...otherprops
+    ...otherProps
 }) => (
     <ScrollView>
-        <SafeAreaView style={styles.safe}>
-            {data &&
-                data.viewer && (
-                    <Avatar
-                        source={{ uri: data.viewer.avatarUrl }}
-                        rounded={true}
-                    />
-                )}
-            <Button title={'logout'} onPress={logout} />
-            <DrawerItems {...otherprops} />
-        </SafeAreaView>
+        {data &&
+            data.profile && (
+                <SafeAreaView style={styles.safe}>
+                    <Grid>
+                        <Row>
+                            <Avatar
+                                source={{ uri: data.profile.avatarUrl }}
+                                rounded={true}
+                            />
+                        </Row>
+                        <Row>
+                            <Text textAlign={'center'}>
+                                {data.profile.name}
+                            </Text>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Text textAlign={'center'}>
+                                    {data.profile.repositories}
+                                </Text>
+                            </Col>
+                            <Col>
+                                <Text textAlign={'center'}>
+                                    {data.profile.totalStars}
+                                </Text>
+                            </Col>
+                            <Col>
+                                <Text textAlign={'center'}>
+                                    {data.profile.followers}
+                                </Text>
+                            </Col>
+                        </Row>
+                    </Grid>
+                    <DrawerItems {...otherProps} />
+                    <Button title={'logout'} onPress={logout} />
+                </SafeAreaView>
+            )}
     </ScrollView>
 )
 
@@ -63,13 +112,26 @@ const mapDispatchToProps: MapDispatchToProps<
 
 export const ConnectedMenu = connect(null, mapDispatchToProps)(NavigationMenu)
 
-export default graphql(gql`
-    query getUserInfo {
-        viewer {
-            id
-            name
-            avatarUrl
-            company
-        }
-    }
-`)(ConnectedMenu)
+export default graphql<Viewer, {}, NavigationMenuProps>(VIEWER_QUERY, {
+    props: ({ data }) => {
+        return data && data.viewer
+            ? {
+                  data: {
+                      ...data,
+                      viewer: undefined,
+                      profile: {
+                          ...data.viewer,
+                          followers: data.viewer.followers.totalCount,
+                          repositories: data.viewer.repositories.totalCount,
+                          totalStars: data.viewer.repositories.edges.reduce(
+                              (total, { node }) => {
+                                  return total + node.stargazers.totalCount
+                              },
+                              0,
+                          ),
+                      },
+                  },
+              }
+            : { data }
+    },
+})(ConnectedMenu)
