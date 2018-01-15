@@ -30,16 +30,17 @@ const styles = StyleSheet.create({
     },
 })
 
-export const NavigationMenu: SFC<
-    NavigationMenuProps & ChildProps<{}, Viewer>
-> = ({ logout, data, ...otherprops }) => (
+export const NavigationMenu: SFC<NavigationMenuProps> = ({
+    logout,
+    data,
+    ...otherprops
+}) => (
     <ScrollView>
         <SafeAreaView style={styles.safe}>
             {data &&
                 data.viewer && (
                     <Avatar
-                        source={data.viewer.avatarUrl}
-                        title={data.viewer.name}
+                        source={{ uri: data.viewer.avatarUrl }}
                         rounded={true}
                     />
                 )}
@@ -57,7 +58,7 @@ const mapDispatchToProps: MapDispatchToProps<
         {
             logout: authActions.logout,
         },
-        dispatch
+        dispatch,
     )
 
 export const ConnectedMenu = connect(null, mapDispatchToProps)(NavigationMenu)
