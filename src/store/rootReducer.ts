@@ -19,7 +19,7 @@ const rootReducer = combineReducers<AppState>({
             blacklist: ['pending'],
             storage,
         },
-        languageReducer
+        languageReducer,
     ),
     navigation: navigationReducer,
     pushNotification: persistReducer(
@@ -28,7 +28,7 @@ const rootReducer = combineReducers<AppState>({
             blacklist: ['register'],
             storage,
         },
-        pushNotificationReducer
+        pushNotificationReducer,
     ),
     boot: bootReducer,
     auth: persistReducer(
@@ -37,7 +37,7 @@ const rootReducer = combineReducers<AppState>({
             blacklist: ['pending', 'isLoggedIn'],
             storage,
         },
-        authReducer
+        authReducer,
     ),
     // Insert reducer here
 })

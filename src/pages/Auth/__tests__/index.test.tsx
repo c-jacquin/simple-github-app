@@ -19,7 +19,7 @@ describe('Auth', () => {
         const tree = renderer.create(
             <Provider store={store}>
                 <Auth />
-            </Provider>
+            </Provider>,
         )
         expect(tree).toBeDefined()
     })

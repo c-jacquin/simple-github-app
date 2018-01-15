@@ -7,7 +7,7 @@ describe('auth reducer', () => {
         expect(
             authReducer(appState.auth, {
                 type: 'TEST',
-            })
+            }),
         ).toEqual(appState.auth)
     })
 })

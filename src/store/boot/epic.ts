@@ -18,7 +18,7 @@ const bootEpic: MyEpic = (action$, store, { bootApi, languageApi }) => {
             languagesActions.getLocaleSuccess(result),
             bootActions.bootstrapSuccess(),
             // pushActions.registerPush(),
-        ])
+        ]),
     )
 }
 

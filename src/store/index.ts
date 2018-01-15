@@ -22,7 +22,7 @@ const getProdEnhancer = (): StoreEnhancer<AppState> => {
 const configureStore = () => {
     const store = createStore<AppState>(
         rootReducer,
-        config.ENV === 'development' ? getDevEnhancer() : getProdEnhancer()
+        config.ENV === 'development' ? getDevEnhancer() : getProdEnhancer(),
     )
 
     const persistor = persistStore(store)

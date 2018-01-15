@@ -16,7 +16,7 @@ const epics = [
 ]
 
 export const rootEpic = combineEpics<ReduxAction, AppState, EpicDependancies>(
-    ...epics
+    ...epics,
 )
 
 const epicMiddleware = createEpicMiddleware<

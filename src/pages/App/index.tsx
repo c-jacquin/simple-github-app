@@ -63,14 +63,14 @@ const mapStateToProps: MapStateToProps<
 })
 
 const mapDispatchToProps: MapDispatchToProps<AppActionCreators, AppProps> = (
-    dispatch: Dispatch<ReduxAction>
+    dispatch: Dispatch<ReduxAction>,
 ) =>
     bindActionCreators(
         {
             goTo: NavigationActions.reset,
             auth,
         },
-        dispatch
+        dispatch,
     )
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

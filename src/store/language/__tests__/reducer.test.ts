@@ -7,13 +7,13 @@ describe('language reducer', () => {
         expect(
             languageReducer(appState.language, {
                 type: 'TEST',
-            })
+            }),
         ).toEqual(appState.language)
     })
 
     it('should handle GET_LOCALE_PENDING action', () => {
         expect(
-            languageReducer(appState.language, languagesActions.getLocale())
+            languageReducer(appState.language, languagesActions.getLocale()),
         ).toEqual({
             ...appState.language,
             pending: true,
@@ -24,8 +24,8 @@ describe('language reducer', () => {
         expect(
             languageReducer(
                 appState.language,
-                languagesActions.getLocaleSuccess('test')
-            )
+                languagesActions.getLocaleSuccess('test'),
+            ),
         ).toEqual({
             ...appState.language,
             locale: 'test',

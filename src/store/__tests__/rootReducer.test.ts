@@ -6,7 +6,7 @@ describe('root reducer', () => {
         expect(
             rootReducer(appState, {
                 type: 'TEST',
-            })
+            }),
         ).toEqual(appState)
     })
 })

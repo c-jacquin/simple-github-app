@@ -32,7 +32,7 @@ describe('Root component', () => {
                 <IntlProvider locale={'en'} messages={translationMessages.en}>
                     <Root {...mockProps} />
                 </IntlProvider>
-            </Provider>
+            </Provider>,
         )
         .toJSON()
 
@@ -42,7 +42,7 @@ describe('Root component', () => {
                 <IntlProvider locale={'en'} messages={translationMessages.en}>
                     <Root nav={mockProps.nav} />
                 </IntlProvider>
-            </Provider>
+            </Provider>,
         )
         .toJSON()
 
