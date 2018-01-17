@@ -6,6 +6,7 @@ import { AuthState } from './types'
 export const initialState: AuthState = {
     pending: false,
     isLoggedIn: false,
+    token: undefined,
 }
 
 const authReducer: Reducer<AuthState> = (state = initialState, action) => {

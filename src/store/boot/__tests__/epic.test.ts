@@ -56,7 +56,6 @@ describe('boot epic', () => {
             bootActions.bootstrap(),
             languageActions.getLocaleSuccess(language),
             bootActions.bootstrapSuccess(),
-            pushActions.registerPush(),
         ])
     })
 })

@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from "react-native"
 
 export class Notifications {
-    static getExponentPushTokenAsync() {
+    static getExpoPushTokenAsync() {
         return Promise.resolve('')
     }
 

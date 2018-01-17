@@ -7,6 +7,7 @@ import { initialState as authState } from './auth/reducer'
 // Import state here
 
 const initialState: AppState = {
+    apollo: {},
     language: languageState,
     navigation: navigationState,
     pushNotification: pushNotificationState,

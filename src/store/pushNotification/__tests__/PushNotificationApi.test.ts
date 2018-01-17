@@ -6,7 +6,7 @@ describe('pushNotification api', () => {
     const pushNotificationApi = new PushNotificationApi()
 
     it('getToken should call the getExpoPushTokenAsync method of Notifications and return an Observable', () => {
-        const spy = jest.spyOn(Notifications, 'getExponentPushTokenAsync')
+        const spy = jest.spyOn(Notifications, 'getExpoPushTokenAsync')
         const returnedValue = pushNotificationApi.getToken()
         expect(spy).toHaveBeenCalled()
         expect(returnedValue).toBeInstanceOf(Observable)

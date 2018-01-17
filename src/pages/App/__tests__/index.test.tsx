@@ -6,13 +6,14 @@ import configureStore from 'redux-mock-store'
 
 const mockStore = configureStore()
 
+import initialState from '../../../store/initialState'
 import App from '../index'
 
 describe('App', () => {
-    let store = mockStore({})
+    let store = mockStore(initialState)
 
     beforeEach(() => {
-        store = mockStore({})
+        store = mockStore(initialState)
     })
 
     it('renders correctly', () => {

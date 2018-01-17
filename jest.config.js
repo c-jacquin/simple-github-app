@@ -5,10 +5,20 @@ const jestConfig = {
         'src/**/*.{ts,tsx}',
         '!src/**/*.test.{ts, tsx}',
         '!src/**/*.d.ts',
+        '!src/**/messages.ts',
         '!src/**/types.ts',
+        '!src/store/**/index.ts',
         '!**/node_modules/**'
     ],
     coverageDirectory: '.temp',
+    coverageThreshold: {
+        global: {
+          branches: 70,
+          functions: 70,
+          lines: 70,
+          statements: -30
+        }
+    },
     moduleDirectories: [
         'node_modules',
         'src'

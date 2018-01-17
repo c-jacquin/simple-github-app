@@ -15,7 +15,7 @@ describe('redux store in prod env', () => {
     let store: Store<AppState>
 
     beforeEach(() => {
-        store = configureStore()
+        store = configureStore().store
     })
 
     it('should has a dispatch method', () => {

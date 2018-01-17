@@ -44,7 +44,7 @@ module.exports = {
     },
     validate: {
         description: 'lint the code, run the test and build',
-        script: concurrent.nps('lint', 'test', 'build'),
+        script: concurrent.nps('lint', 'test.cover', 'build'),
     },
     release: {
         default: {
@@ -78,8 +78,7 @@ module.exports = {
         production: {
             description: 'build for production',
             script: series(
-                'NODE_ENV=production tsc',
-                'exp build:android'
+                'NODE_ENV=production tsc'
             )
         },
     },

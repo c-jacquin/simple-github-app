@@ -10,6 +10,6 @@ describe('config in prod environment', () => {
     })
 
     it('should have ENV property = prod', () => {
-        expect(config.ENV).toEqual('prod')
+        expect(config.ENV).toEqual('production')
     })
 })
