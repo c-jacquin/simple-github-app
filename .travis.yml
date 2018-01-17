@@ -11,3 +11,9 @@ install:
 
 script:
   - npm start validate
+  - npm start coverall
+
+branches:
+  only:
+  - master
+  - staging

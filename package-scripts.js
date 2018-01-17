@@ -5,9 +5,6 @@ const {
 
 module.exports = {
   scripts: {
-    foo: {
-        script: "rndebugger-open --open --expo"
-    },
     default: {
         description: 'transpile typescript and watch for change',
         script: concurrent({
@@ -17,6 +14,10 @@ module.exports = {
             ),
             expo: 'exp start'
         })
+    },
+    coverall: {
+        description: 'send coverage data to coveralls.io (only used on CI)',
+        script: 'cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js'
     },
     generate: {
         description: 'code generator using plop (containers, components, redux module ...)',
