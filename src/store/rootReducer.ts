@@ -12,7 +12,13 @@ import authReducer from './auth/reducer'
 // Import reducer here
 
 const rootReducer = combineReducers<AppState>({
-    apollo: apolloReducer,
+    apollo: persistReducer(
+        {
+            key: 'apollo',
+            storage,
+        },
+        apolloReducer,
+    ),
     language: persistReducer(
         {
             key: 'language',
