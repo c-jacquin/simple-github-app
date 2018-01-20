@@ -1,8 +1,9 @@
 import { Permissions, Notifications } from 'expo'
 import { fromPromise } from 'rxjs/observable/fromPromise'
 import { of as observableOf } from 'rxjs/observable/of'
+import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
-import { mergeMap, catchError } from 'rxjs/operators'
+import { switchMap, catchError, share } from 'rxjs/operators'
 
 import config from 'config'
 
@@ -13,9 +14,9 @@ export class PushNotificationApi {
         return fromPromise(Notifications.getExpoPushTokenAsync())
     }
 
-    register(): Observable<Response> {
+    register(login: string): Observable<Response> {
         return this.getToken().pipe(
-            mergeMap(token => {
+            switchMap(pushToken => {
                 return fetch(config.BASE_URL + config.PUSH_ENDPOINT, {
                     method: 'POST',
                     headers: {
@@ -23,7 +24,8 @@ export class PushNotificationApi {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        token,
+                        pushToken,
+                        login,
                     }),
                 })
             }),
@@ -31,16 +33,13 @@ export class PushNotificationApi {
         )
     }
 
-    subscribe(): Observable<Notifications.Notification> {
-        return new Observable(observer => {
-            this.subscription = Notifications.addListener(notif => {
-                observer.next(notif)
-            })
+    subscribe(): Subject<{}> {
+        const subject = new Subject()
+        this.subscription = Notifications.addListener(
+            subject.next.bind(subject),
+        )
 
-            return () => {
-                this.unsubscribe()
-            }
-        })
+        return subject
     }
 
     unsubscribe() {

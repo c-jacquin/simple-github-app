@@ -5,6 +5,7 @@ import { NavigationState } from 'store/navigation/types'
 
 export interface RootActionCreators {
     bootstrap?: ActionCreator<ReduxAction>
+    subscribePush?: ActionCreator<ReduxAction>
 }
 
 export interface RootConnectedProps {

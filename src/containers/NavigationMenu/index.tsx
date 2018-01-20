@@ -10,6 +10,7 @@ import { Grid, Row, Col } from 'react-native-easy-grid'
 
 import Avatar from 'components/Avatar'
 
+import { persistor } from 'store'
 import { AppState, ReduxAction } from 'store/types'
 import * as authActions from 'store/auth'
 import messages from './messages'
@@ -33,6 +34,7 @@ const VIEWER_QUERY = gql`
             avatarUrl
             company
             location
+            login
             followers {
                 totalCount
             }
@@ -102,13 +104,13 @@ export const NavigationMenu: SFC<NavigationMenuProps> = ({
 const mapDispatchToProps: MapDispatchToProps<
     NavigationMenuActionCreators,
     NavigationMenuProps
-> = dispatch =>
-    bindActionCreators(
-        {
-            logout: authActions.logout,
-        },
-        dispatch,
-    )
+> = dispatch => ({
+    ...bindActionCreators({}, dispatch),
+    logout: async () => {
+        await persistor.purge()
+        dispatch(authActions.logout())
+    },
+})
 
 export const ConnectedMenu = connect(null, mapDispatchToProps)(NavigationMenu)
 

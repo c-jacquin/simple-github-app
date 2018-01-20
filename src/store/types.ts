@@ -22,7 +22,9 @@ export interface ErrorReduxAction extends Action {
 }
 
 export interface AppState {
-    apollo: {}
+    apollo: {
+        [key: string]: any
+    }
     language: LanguageState
     navigation: NavigationState
     pushNotification: PushNotificationState

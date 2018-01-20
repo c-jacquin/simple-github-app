@@ -15,6 +15,9 @@ import { ReduxCache } from 'apollo-cache-redux'
 import config from 'config'
 import { AppState, ReduxAction } from 'store/types'
 import { selectToken, auth } from 'store/auth'
+import { selectIsPushRegister, registerPush } from 'store/pushNotification'
+import { selectUser } from 'store/apollo'
+
 import Navigator from './App.nav'
 import messages from './messages'
 import { AppProps, AppConnectedProps, AppActionCreators } from './types'
@@ -45,6 +48,16 @@ export class App extends Component<AppProps, {}> {
         }
     }
 
+    componentWillReceiveProps({ user }: AppProps) {
+        if (
+            !this.props.isPushRegister &&
+            this.props.registerPush &&
+            (!!user && !this.props.user)
+        ) {
+            this.props.registerPush()
+        }
+    }
+
     render() {
         return (
             <ApolloProvider client={this.client}>
@@ -60,6 +73,8 @@ const mapStateToProps: MapStateToProps<
     AppState
 > = state => ({
     token: selectToken(state),
+    isPushRegister: selectIsPushRegister(state),
+    user: selectUser(state),
 })
 
 const mapDispatchToProps: MapDispatchToProps<AppActionCreators, AppProps> = (
@@ -69,6 +84,7 @@ const mapDispatchToProps: MapDispatchToProps<AppActionCreators, AppProps> = (
         {
             goTo: NavigationActions.reset,
             auth,
+            registerPush,
         },
         dispatch,
     )

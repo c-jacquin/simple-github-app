@@ -1,4 +1,5 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { Notifications } from 'expo'
 
 export class PushNotificationApi {
     getToken() {
@@ -10,7 +11,7 @@ export class PushNotificationApi {
     }
 
     subscribe() {
-        return new BehaviorSubject({
+        return new BehaviorSubject<Notifications.Notification>({
             isMultiple: true,
             data: {},
             origin: 'selected',

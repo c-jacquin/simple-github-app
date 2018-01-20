@@ -14,7 +14,7 @@ describe('pushNotification api', () => {
 
     it('register should call getToken method and return an Observable', () => {
         const spy = jest.spyOn(pushNotificationApi, 'getToken')
-        const returnedValue = pushNotificationApi.register()
+        const returnedValue = pushNotificationApi.register('')
 
         expect(spy).toHaveBeenCalled()
         expect(returnedValue).toBeInstanceOf(Observable)
