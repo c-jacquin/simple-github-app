@@ -1,9 +1,10 @@
 import { Epic, combineEpics } from 'redux-observable'
-import { merge, switchMap, map } from 'rxjs/operators'
+import { merge, switchMap, map, filter, tap } from 'rxjs/operators'
 
 import config from 'config'
 import { MyEpic } from '../types'
 import * as pushNotificationActions from './actions'
+import { selectUser } from 'store/apollo'
 
 export const registerPushNotificationEpic: MyEpic = (
     action$,
@@ -13,7 +14,8 @@ export const registerPushNotificationEpic: MyEpic = (
     return action$
         .ofType(pushNotificationActions.REGISTER_PUSH)
         .pipe(
-            switchMap(() => pushNotificationApi.register()),
+            map(() => selectUser(store.getState()).login),
+            switchMap(pushNotificationApi.register.bind(pushNotificationApi)),
             map(pushNotificationActions.registerPushSuccess),
         )
 }
@@ -24,9 +26,9 @@ export const subscribePushNotificationEpic: MyEpic = (
     { pushNotificationApi },
 ) => {
     return action$
-        .ofType(pushNotificationActions.REGISTER_PUSH_SUCCESS)
+        .ofType(pushNotificationActions.SUBSCRIBE_PUSH)
         .pipe(
-            switchMap(() => pushNotificationApi.subscribe()),
+            switchMap(pushNotificationApi.subscribe),
             map(pushNotificationActions.newPushNotification),
         )
 }

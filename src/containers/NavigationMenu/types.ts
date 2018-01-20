@@ -39,5 +39,5 @@ export interface NavigationMenuProps
 }
 
 export interface NavigationMenuActionCreators {
-    logout: ActionCreator<ReduxAction>
+    logout: () => Promise<void>
 }

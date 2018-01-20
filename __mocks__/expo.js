@@ -6,7 +6,9 @@ export class Notifications {
         return Promise.resolve('')
     }
 
-    static addListener() {}
+    static addListener(fn) {
+        fn()
+    }
 }
 
 export class Util {

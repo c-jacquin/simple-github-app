@@ -19,15 +19,11 @@ const getProdEnhancer = (): StoreEnhancer<AppState> => {
     return applyMiddleware(...middlewares)
 }
 
-const configureStore = () => {
-    const store = createStore<AppState>(
-        rootReducer,
-        config.ENV === 'development' ? getDevEnhancer() : getProdEnhancer(),
-    )
+const store = createStore<AppState>(
+    rootReducer,
+    config.ENV === 'development' ? getDevEnhancer() : getProdEnhancer(),
+)
 
-    const persistor = persistStore(store)
+const persistor = persistStore(store)
 
-    return { persistor, store }
-}
-
-export default configureStore
+export { persistor, store }

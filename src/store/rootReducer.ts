@@ -31,7 +31,7 @@ const rootReducer = combineReducers<AppState>({
     pushNotification: persistReducer(
         {
             key: 'pushNotifications',
-            blacklist: ['register'],
+            blacklist: ['data'],
             storage,
         },
         pushNotificationReducer,

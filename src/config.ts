@@ -36,7 +36,7 @@ let config: Env = {
     AUTH_SCOPE: ['notifications', 'user', 'repo'],
     API_ENDPOINT: 'https://api.github.com/graphql',
     LOGIN_ENDPOINT: '/auth',
-    PUSH_ENDPOINT: '/push',
+    PUSH_ENDPOINT: '/push/register',
     WINDOW: {
         WIDTH: width,
         HEIGHT: height,

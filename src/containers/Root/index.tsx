@@ -10,6 +10,7 @@ import { bindActionCreators, Dispatch } from 'redux'
 import { AppState, ReduxAction } from 'store/types'
 import { bootstrap, isAppReady } from 'store/boot'
 import { selectNavigation } from 'store/navigation'
+import { subscribePush } from 'store/pushNotification'
 import Navigator from 'pages'
 
 import {
@@ -27,6 +28,10 @@ export class Root extends PureComponent<RootProps, RootState> {
     componentWillMount() {
         if (this.props.bootstrap) {
             this.props.bootstrap()
+        }
+
+        if (this.props.subscribePush) {
+            this.props.subscribePush()
         }
     }
 
@@ -69,6 +74,7 @@ const mapDispatchToProps: MapDispatchToProps<
     bindActionCreators(
         {
             bootstrap,
+            subscribePush,
         },
         dispatch,
     )

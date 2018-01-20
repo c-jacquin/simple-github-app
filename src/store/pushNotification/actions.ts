@@ -3,9 +3,14 @@ import { Notifications } from 'expo'
 
 import { ErrorReduxAction, ReduxAction } from '../types'
 
+export const SUBSCRIBE_PUSH = 'SUBSCRIBE_PUSH'
 export const REGISTER_PUSH = 'REGISTER_PUSH'
 export const REGISTER_PUSH_SUCCESS = 'REGISTER_PUSH_SUCCESS'
 export const NEW_PUSH_NOTIFICATION = 'NEW_PUSH_NOTIFICATION'
+
+export const subscribePush = () => ({
+    type: SUBSCRIBE_PUSH,
+})
 
 export const registerPush = () => ({
     type: REGISTER_PUSH,
