@@ -9,6 +9,7 @@ import {
 } from 'store/pushNotification'
 import { BootState, BootApi } from 'store/boot'
 import { AuthState, AuthApi } from 'store/auth'
+import { SettingsState, SettingsApi } from 'store/settings'
 // Import types here
 
 export interface ReduxAction extends Action {
@@ -30,6 +31,7 @@ export interface AppState {
     pushNotification: PushNotificationState
     boot: BootState
     auth: AuthState
+    settings: SettingsState
     // Insert types here
 }
 
@@ -38,6 +40,7 @@ export interface EpicDependancies {
     pushNotificationApi: PushNotificationApi
     bootApi: BootApi
     authApi: AuthApi
+    settingsApi: SettingsApi
     // Insert api here
 }
 

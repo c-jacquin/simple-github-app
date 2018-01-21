@@ -1,16 +1,15 @@
 import Expo, { AppLoading } from 'expo'
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { ThemeProvider } from 'glamorous-native'
 import { PersistGate } from 'redux-persist/es/integration/react'
 
 import { store, persistor } from 'store/index'
 
 import LanguageProvider from 'containers/LanguageProvider'
+import ThemeProvider from 'containers/ThemeProvider'
 import Root from 'containers/Root'
 
 import { translationMessages } from './i18n'
-import { theme } from './theme'
 
 export class App extends React.Component<{}, {}> {
     render() {
@@ -18,7 +17,7 @@ export class App extends React.Component<{}, {}> {
             <Provider store={store}>
                 <PersistGate loading={<AppLoading />} persistor={persistor}>
                     <LanguageProvider messages={translationMessages}>
-                        <ThemeProvider theme={theme}>
+                        <ThemeProvider>
                             <Root />
                         </ThemeProvider>
                     </LanguageProvider>
