@@ -2,7 +2,7 @@ import { Action } from 'redux'
 import { Observable } from 'rxjs/Observable'
 import { Epic } from 'redux-observable'
 import { LanguageState, LanguageApi } from 'store/language'
-import { NavigationState } from 'store/navigation'
+import { FullNavigationState } from 'store/navigation'
 import {
     PushNotificationState,
     PushNotificationApi,
@@ -26,7 +26,7 @@ export interface AppState {
         [key: string]: any
     }
     language: LanguageState
-    navigation: NavigationState
+    navigation: FullNavigationState
     pushNotification: PushNotificationState
     boot: BootState
     auth: AuthState

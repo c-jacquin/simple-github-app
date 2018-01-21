@@ -9,7 +9,7 @@ import { bindActionCreators, Dispatch } from 'redux'
 
 import { AppState, ReduxAction } from 'store/types'
 import { bootstrap, isAppReady } from 'store/boot'
-import { selectNavigation } from 'store/navigation'
+import { selectRootNavigation } from 'store/navigation/root'
 import { subscribePush } from 'store/pushNotification'
 import Navigator from 'pages'
 
@@ -65,7 +65,7 @@ export const mapStateToProps: MapStateToProps<
     AppState
 > = state => ({
     appReady: isAppReady(state),
-    nav: selectNavigation(state),
+    nav: selectRootNavigation(state),
 })
 const mapDispatchToProps: MapDispatchToProps<
     RootActionCreators,

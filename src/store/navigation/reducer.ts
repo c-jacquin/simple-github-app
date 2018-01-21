@@ -1,17 +1,22 @@
-import { Reducer } from 'redux'
-import Navigator from 'pages'
-import { NavigationState } from './types'
+import { combineReducers } from 'redux'
 
-export const initialState: NavigationState = Navigator.router.getStateForAction(
-    Navigator.router.getActionForPathAndParams('App'),
-    null,
-)
+import rootNavigationReducer, {
+    initialState as rootInitialState,
+} from './root/reducer'
+import appNavigationReducer, {
+    initialState as appInitialState,
+} from './app/reducer'
 
-const navigationReducer: Reducer<NavigationState> = (
-    state = initialState,
-    action,
-) => {
-    return Navigator.router.getStateForAction(action, state)
+import { FullNavigationState } from './types'
+
+export const initialState = {
+    root: rootInitialState,
+    app: appInitialState,
 }
+
+const navigationReducer = combineReducers<FullNavigationState>({
+    root: rootNavigationReducer,
+    app: appNavigationReducer,
+})
 
 export default navigationReducer

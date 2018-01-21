@@ -1,5 +1,3 @@
-import { Action } from 'redux'
-
 export interface Route {
     routeName: string
     key: string
@@ -10,6 +8,7 @@ export interface NavigationState {
     routes: Route[]
 }
 
-export interface NavigationAction extends Action {
-    routeName: string
+export interface FullNavigationState {
+    root: NavigationState
+    app: NavigationState
 }

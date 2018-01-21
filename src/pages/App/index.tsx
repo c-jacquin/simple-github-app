@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect, MapStateToProps, MapDispatchToProps } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, addNavigationHelpers } from 'react-navigation'
 import { ApolloProvider } from 'react-apollo'
 import {
     ApolloClient,
@@ -17,6 +17,7 @@ import { AppState, ReduxAction } from 'store/types'
 import { selectToken, auth } from 'store/auth'
 import { selectIsPushRegister, registerPush } from 'store/pushNotification'
 import { selectUser } from 'store/apollo'
+import { selectAppNavigation } from 'store/navigation/app'
 
 import Navigator from './App.nav'
 import messages from './messages'
@@ -61,7 +62,12 @@ export class App extends Component<AppProps, {}> {
     render() {
         return (
             <ApolloProvider client={this.client}>
-                <Navigator />
+                <Navigator
+                    navigation={addNavigationHelpers({
+                        dispatch: this.context.store.dispatch,
+                        state: this.props.nav,
+                    })}
+                />
             </ApolloProvider>
         )
     }
@@ -75,6 +81,7 @@ const mapStateToProps: MapStateToProps<
     token: selectToken(state),
     isPushRegister: selectIsPushRegister(state),
     user: selectUser(state),
+    nav: selectAppNavigation(state),
 })
 
 const mapDispatchToProps: MapDispatchToProps<AppActionCreators, AppProps> = (
