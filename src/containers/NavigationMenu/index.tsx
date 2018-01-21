@@ -1,14 +1,21 @@
 import React, { SFC, Fragment } from 'react'
-import { ScrollView, SafeAreaView, StyleSheet, Button } from 'react-native'
+import { injectIntl, InjectedIntlProps } from 'react-intl'
+import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import { DrawerItems } from 'react-navigation'
 import { connect, MapDispatchToProps } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { bindActionCreators } from 'redux'
-import { Text, View } from 'glamorous-native'
 import { Grid, Row, Col } from 'react-native-easy-grid'
-
-import Avatar from 'components/Avatar'
+import {
+    Container,
+    Content,
+    Header,
+    Button,
+    Thumbnail,
+    Icon,
+    Text,
+} from 'native-base'
 
 import { persistor } from 'store'
 import { AppState, ReduxAction } from 'store/types'
@@ -23,6 +30,10 @@ import {
 const styles = StyleSheet.create({
     safe: {
         flex: 1,
+    },
+    header: {
+        height: 150,
+        flexDirection: 'column',
     },
 })
 
@@ -55,50 +66,37 @@ const VIEWER_QUERY = gql`
     }
 `
 
-export const NavigationMenu: SFC<NavigationMenuProps> = ({
+export const NavigationMenu: SFC<NavigationMenuProps & InjectedIntlProps> = ({
     logout,
     data,
+    intl,
     ...otherProps
 }) => (
-    <ScrollView>
-        {data &&
-            data.profile && (
-                <SafeAreaView style={styles.safe}>
-                    <Grid>
-                        <Row>
-                            <Avatar
+    <Container>
+        <ScrollView>
+            {data &&
+                data.profile && (
+                    <SafeAreaView style={styles.safe}>
+                        <Header style={styles.header}>
+                            <Thumbnail
+                                size={50}
                                 source={{ uri: data.profile.avatarUrl }}
-                                rounded={true}
                             />
-                        </Row>
-                        <Row>
-                            <Text textAlign={'center'}>
-                                {data.profile.name}
-                            </Text>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Text textAlign={'center'}>
-                                    {data.profile.repositories}
+                            <Text>{data.profile.name}</Text>
+                        </Header>
+                        <Content>
+                            <Button transparent iconLeft onPress={logout}>
+                                <Icon name="log-out" />
+                                <Text>
+                                    {intl.formatMessage(messages.logout)}
                                 </Text>
-                            </Col>
-                            <Col>
-                                <Text textAlign={'center'}>
-                                    {data.profile.totalStars}
-                                </Text>
-                            </Col>
-                            <Col>
-                                <Text textAlign={'center'}>
-                                    {data.profile.followers}
-                                </Text>
-                            </Col>
-                        </Row>
-                    </Grid>
-                    <DrawerItems {...otherProps} />
-                    <Button title={'logout'} onPress={logout} />
-                </SafeAreaView>
-            )}
-    </ScrollView>
+                            </Button>
+                            <DrawerItems {...otherProps} />
+                        </Content>
+                    </SafeAreaView>
+                )}
+        </ScrollView>
+    </Container>
 )
 
 const mapDispatchToProps: MapDispatchToProps<
@@ -112,7 +110,9 @@ const mapDispatchToProps: MapDispatchToProps<
     },
 })
 
-export const ConnectedMenu = connect(null, mapDispatchToProps)(NavigationMenu)
+export const ConnectedMenu = injectIntl<NavigationMenuProps>(
+    connect(null, mapDispatchToProps)(NavigationMenu),
+)
 
 export default graphql<Viewer, {}, NavigationMenuProps>(VIEWER_QUERY, {
     props: ({ data }) => {

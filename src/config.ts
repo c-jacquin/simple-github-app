@@ -24,6 +24,7 @@ export interface Env {
         HEIGHT: number
     }
     IS_SMALL: boolean
+    DEFAULT_THEME: string
 }
 
 let config: Env = {
@@ -42,6 +43,7 @@ let config: Env = {
         HEIGHT: height,
     },
     IS_SMALL: width < 375,
+    DEFAULT_THEME: 'material',
 }
 
 if (process.env.NODE_ENV === 'production') {

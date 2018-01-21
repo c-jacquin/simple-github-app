@@ -9,6 +9,7 @@ import navigationReducer from './navigation/reducer'
 import pushNotificationReducer from './pushNotification/reducer'
 import bootReducer from './boot/reducer'
 import authReducer from './auth/reducer'
+import settingsReducer from './settings/reducer'
 // Import reducer here
 
 const rootReducer = combineReducers<AppState>({
@@ -44,6 +45,13 @@ const rootReducer = combineReducers<AppState>({
             storage,
         },
         authReducer,
+    ),
+    settings: persistReducer(
+        {
+            key: 'settings',
+            storage,
+        },
+        settingsReducer,
     ),
     // Insert reducer here
 })

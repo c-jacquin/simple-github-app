@@ -20,6 +20,7 @@
         ],
         "interface-name": false,
         "jsdoc-format": false,
+        "jsx-boolean-value": false,
         "jsx-curly-spacing": true,
         "jsx-no-multiline-js": false,
         "label-position": true,
