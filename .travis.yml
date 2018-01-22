@@ -10,7 +10,7 @@ install:
   - npm i
 
 script:
-  - npm start validate
+  - npm start test.cover
   - npm start coverall
 
 branches:
