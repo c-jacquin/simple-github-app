@@ -19,6 +19,10 @@ import { selectRootNavigation } from 'store/navigation/root'
 import { subscribePush } from 'store/pushNotification'
 import Navigator from 'pages'
 
+import LanguageProvider from 'containers/LanguageProvider'
+import ThemeProvider from 'containers/ThemeProvider'
+import { translationMessages } from 'i18n'
+
 import {
     RootActionCreators,
     RootConnectedProps,
@@ -56,18 +60,24 @@ export class Root extends PureComponent<RootProps, RootState> {
 
         if (appReady) {
             return (
-                <View style={styles.root}>
-                    {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-                    {Platform.OS === 'android' && (
-                        <View style={styles.androidStatusBar} />
-                    )}
-                    <Navigator
-                        navigation={addNavigationHelpers({
-                            dispatch: this.context.store.dispatch,
-                            state: nav,
-                        })}
-                    />
-                </View>
+                <LanguageProvider messages={translationMessages}>
+                    <ThemeProvider>
+                        <View style={styles.root}>
+                            {Platform.OS === 'ios' && (
+                                <StatusBar barStyle="default" />
+                            )}
+                            {Platform.OS === 'android' && (
+                                <View style={styles.androidStatusBar} />
+                            )}
+                            <Navigator
+                                navigation={addNavigationHelpers({
+                                    dispatch: this.context.store.dispatch,
+                                    state: nav,
+                                })}
+                            />
+                        </View>
+                    </ThemeProvider>
+                </LanguageProvider>
             )
         } else {
             return <AppLoading />
