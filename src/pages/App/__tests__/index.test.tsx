@@ -1,5 +1,5 @@
 import React from 'react'
-import 'react-native'
+import { IntlProvider } from 'react-intl'
 import { Provider } from 'react-redux'
 import renderer from 'react-test-renderer'
 import configureStore from 'redux-mock-store'
@@ -19,7 +19,9 @@ describe('App', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
             <Provider store={store}>
-                <App />
+                <IntlProvider locale="en" messages={{}}>
+                    <App />
+                </IntlProvider>
             </Provider>,
         )
         expect(tree).toBeDefined()

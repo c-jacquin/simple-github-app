@@ -13,9 +13,8 @@ const jestConfig = {
     coverageDirectory: '.temp',
     coverageThreshold: {
         global: {
-          branches: 50,
-          functions: 70,
-          lines: 70
+          functions: 80,
+          lines: 80
         }
     },
     moduleDirectories: [
