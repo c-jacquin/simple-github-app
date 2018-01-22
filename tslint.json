@@ -1,6 +1,8 @@
 {
     "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+    "rulesDirectory": ["tslint-plugin-prettier"],
     "rules": {
+        "prettier": true,
         "align": [
             true,
             "parameters",
@@ -83,10 +85,6 @@
             "never"
         ],
         "switch-default": true,
-        "trailing-comma": [true, {
-            "multiline": "always",
-            "singleline": "never"
-        }],
         "triple-equals": [
             true,
             "allow-null-check"
