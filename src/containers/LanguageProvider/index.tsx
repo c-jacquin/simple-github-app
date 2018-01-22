@@ -15,16 +15,20 @@ import config from 'config'
 
 import { LanguageConnectedProps, LanguageProps } from './types'
 
-export const LanguageProvider: StatelessComponent<LanguageProps> = ({
-    locale = config.LANGUAGE.DEFAULT_LOCALE,
-    children,
-    messages,
-}) => {
-    return (
-        <IntlProvider locale={locale} messages={messages[locale]}>
-            {children}
-        </IntlProvider>
-    )
+export class LanguageProvider extends React.PureComponent<LanguageProps> {
+    render() {
+        const { locale = config.LANGUAGE.DEFAULT_LOCALE, messages } = this.props
+
+        return (
+            <IntlProvider
+                locale={locale}
+                key={locale}
+                messages={messages[locale]}
+            >
+                {this.props.children}
+            </IntlProvider>
+        )
+    }
 }
 
 export const mapStateToProps: MapStateToProps<

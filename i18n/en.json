@@ -1,3 +1,8 @@
 {
-    "logout": "Logout"
+    "en": "English",
+    "fr": "French",
+    "language": "Language",
+    "logout": "Logout",
+    "settings": "Settings",
+    "themes": "Themes"
 }

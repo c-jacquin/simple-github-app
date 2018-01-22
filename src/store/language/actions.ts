@@ -4,6 +4,7 @@ import { ErrorReduxAction, ReduxAction } from '../types'
 export const GET_LOCALE_PENDING = 'GET_LOCALE_PENDING'
 export const GET_LOCALE_SUCCESS = 'GET_LOCALE_SUCCESS'
 export const GET_LOCALE_FAILED = 'GET_LOCALE_FAILED'
+export const SET_LOCALE = 'CHANGE_LOCALE'
 
 export const getLocale: ActionCreator<ReduxAction> = () => ({
     type: GET_LOCALE_PENDING,
@@ -17,4 +18,9 @@ export const getLocaleSuccess: ActionCreator<ReduxAction> = payload => ({
 export const getLocaleFailed: ActionCreator<ErrorReduxAction> = error => ({
     type: GET_LOCALE_FAILED,
     error,
+})
+
+export const setLocale: ActionCreator<ReduxAction> = payload => ({
+    type: SET_LOCALE,
+    payload,
 })

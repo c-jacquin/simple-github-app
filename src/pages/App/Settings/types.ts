@@ -1,7 +1,16 @@
-export interface SettingsConnectedProps {}
+import { ActionCreator } from 'react-redux'
+import { ReduxAction } from 'store/types'
 
-export interface SettingsProps {}
+export interface SettingsConnectedProps {
+    theme: string
+    locale: string
+}
 
-export interface SettingsActionCreators {}
+export interface SettingsProps
+    extends SettingsConnectedProps,
+        SettingsActionCreators {}
 
-export interface SettingsState {}
+export interface SettingsActionCreators {
+    changeTheme: ActionCreator<ReduxAction>
+    changeLocale: ActionCreator<ReduxAction>
+}

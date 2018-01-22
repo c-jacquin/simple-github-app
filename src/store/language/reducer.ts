@@ -20,6 +20,7 @@ const languageReducer: Reducer<LanguageState> = (
                 ...state,
                 pending: true,
             }
+        case LanguageActions.SET_LOCALE:
         case LanguageActions.GET_LOCALE_SUCCESS:
             return {
                 ...state,
