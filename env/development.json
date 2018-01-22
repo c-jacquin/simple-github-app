@@ -1,5 +1,5 @@
 {
     "ENV": "development",
-    "BASE_URL": "http://192.168.1.27:3000",
+    "BASE_URL": "https://github-expo-push.herokuapp.com",
     "GITHUB_ID": "df6da1be6bf8afcb7f91"
 }
