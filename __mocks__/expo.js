@@ -31,6 +31,10 @@ export class Font {
     static loadAsync() {
         return Promise.resolve()
     }
+
+    static isLoaded() {
+        
+    }
 }
 
 export const AppLoading = () => {

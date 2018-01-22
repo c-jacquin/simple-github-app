@@ -14,6 +14,7 @@ describe('config', () => {
             'PUSH_ENDPOINT',
             'WINDOW',
             'IS_SMALL',
+            'DEFAULT_THEME',
         ])
     })
 })

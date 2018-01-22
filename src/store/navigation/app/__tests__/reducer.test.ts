@@ -1,12 +1,11 @@
-import appNavigationReducer from '../reducer'
-import appState from '../../../initialState'
+import appNavigationReducer, { initialState } from '../reducer'
 
 describe('app navigation reducer', () => {
     it('should return the initial state', () => {
         expect(
-            appNavigationReducer(appState.navigation.app, {
+            appNavigationReducer(initialState, {
                 type: 'TEST',
             }),
-        ).toEqual(appState.navigation.app)
+        ).toEqual(initialState)
     })
 })

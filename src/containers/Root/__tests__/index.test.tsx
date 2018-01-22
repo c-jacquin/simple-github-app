@@ -65,7 +65,7 @@ describe('Root component', () => {
     describe('mapStateToPropsFunction', () => {
         it('should return the navigation state in an object', () => {
             expect(mapStateToProps(initialState, null)).toEqual({
-                nav: initialState.navigation,
+                nav: initialState.navigation.root,
                 appReady: true,
             })
         })
