@@ -1,4 +1,4 @@
-import configureMockStore from 'redux-mock-store'
+import configureMockStore, { MockStore } from 'redux-mock-store'
 import { createEpicMiddleware } from 'redux-observable'
 
 import { dependencies } from '../../epicDependencies'
@@ -25,10 +25,10 @@ describe('registerPushNotification epic', () => {
     })
     const mockStore = configureMockStore([epicMiddleware])
 
-    let store = mockStore()
+    let store: MockStore<any>
 
     beforeEach(() => {
-        store = mockStore({ apollo: { User: {} } })
+        store = mockStore({ apollo: { User: {} }, auth: { token: 'test' } })
     })
 
     afterEach(() => {

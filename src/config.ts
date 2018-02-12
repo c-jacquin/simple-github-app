@@ -19,6 +19,7 @@ export interface Env {
     BASE_URL: string
     API_ENDPOINT: string
     LOGIN_ENDPOINT: string
+    PUSH_PROFILE_ENDPOINT: string
     WINDOW: {
         WIDTH: number
         HEIGHT: number
@@ -38,6 +39,7 @@ let config: Env = {
     API_ENDPOINT: 'https://api.github.com/graphql',
     LOGIN_ENDPOINT: '/auth',
     PUSH_ENDPOINT: '/push/register',
+    PUSH_PROFILE_ENDPOINT: '/push/profile',
     WINDOW: {
         WIDTH: width,
         HEIGHT: height,

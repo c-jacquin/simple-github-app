@@ -4,7 +4,7 @@ import { merge, switchMap, map, filter, tap } from 'rxjs/operators'
 import config from 'config'
 import { MyEpic } from '../types'
 import * as pushNotificationActions from './actions'
-import { selectUser } from 'store/apollo'
+import { selectToken } from 'store/auth'
 
 export const registerPushNotificationEpic: MyEpic = (
     action$,
@@ -14,7 +14,7 @@ export const registerPushNotificationEpic: MyEpic = (
     return action$
         .ofType(pushNotificationActions.REGISTER_PUSH)
         .pipe(
-            map(() => selectUser(store.getState()).login),
+            map(() => selectToken(store.getState())),
             switchMap(pushNotificationApi.register.bind(pushNotificationApi)),
             map(pushNotificationActions.registerPushSuccess),
         )

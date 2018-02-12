@@ -213,12 +213,6 @@
   dependencies:
     redux "^3.6.0"
 
-"@types/redux-persist@^4.3.1":
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/@types/redux-persist/-/redux-persist-4.3.1.tgz#aa4c876859e0bea5155e5f7980e5b8c4699dc2e6"
-  dependencies:
-    redux-persist "*"
-
 "@types/remote-redux-devtools@^0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@types/remote-redux-devtools/-/remote-redux-devtools-0.5.2.tgz#828112e340e397a69f613ab1fd501021b8fb9f67"
@@ -708,6 +702,10 @@ auth0@^2.7.0:
     request "^2.83.0"
     rest-facade "^1.10.0"
     retry "^0.10.1"
+
+autobind-decorator@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.1.0.tgz#4451240dbfeff46361c506575a63ed40f0e5bc68"
 
 aws-sign2@~0.6.0:
   version "0.6.0"
@@ -7798,9 +7796,9 @@ redux-observable@^0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/redux-observable/-/redux-observable-0.17.0.tgz#23e29e3f3c39204b7ed6a14b67a29e317c03106b"
 
-redux-persist@*:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.5.0.tgz#64b5030625cb6f863f76487975acb8bb4fe4f9bb"
+redux-persist@^5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.7.0.tgz#b2d9a7c885b1ba29dd802106899970943072390d"
 
 redux@^3.6.0, redux@^3.7.2:
   version "3.7.2"

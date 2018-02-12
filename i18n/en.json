@@ -1,8 +1,12 @@
 {
+    "commit": "commit",
     "en": "English",
     "fr": "French",
+    "issue": "Issue",
     "language": "Language",
     "logout": "Logout",
+    "pull-request": "Pull request",
+    "push": "Notifications",
     "settings": "Settings",
     "themes": "Themes"
 }

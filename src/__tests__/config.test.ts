@@ -1,20 +1,15 @@
-import config from '../config'
+import { Env } from '../config'
 
-describe('config', () => {
-    it('should have correct properties', () => {
-        expect(Object.keys(config)).toEqual([
-            'ENV',
-            'BASE_URL',
-            'GITHUB_ID',
-            'LANGUAGE',
-            'AUTH_URL',
-            'AUTH_SCOPE',
-            'API_ENDPOINT',
-            'LOGIN_ENDPOINT',
-            'PUSH_ENDPOINT',
-            'WINDOW',
-            'IS_SMALL',
-            'DEFAULT_THEME',
-        ])
+describe('config in prod environment', () => {
+    let config: Env
+
+    beforeEach(() => {
+        process.env.NODE_ENV = 'production'
+        config = require('../config').default
+        process.env.NODE_ENV = 'test'
+    })
+
+    it('should have ENV property = prod', () => {
+        expect(config.ENV).toEqual('production')
     })
 })

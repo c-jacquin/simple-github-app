@@ -14,18 +14,18 @@ export class PushNotificationApi {
         return fromPromise(Notifications.getExpoPushTokenAsync())
     }
 
-    register(login: string): Observable<Response> {
+    register(token: string): Observable<Response | {}> {
         return this.getToken().pipe(
             switchMap(pushToken => {
                 return fetch(config.BASE_URL + config.PUSH_ENDPOINT, {
                     method: 'POST',
-                    headers: {
+                    headers: new Headers({
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
-                    },
+                        Authorization: token,
+                    }),
                     body: JSON.stringify({
                         pushToken,
-                        login,
                     }),
                 })
             }),

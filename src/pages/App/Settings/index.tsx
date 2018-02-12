@@ -1,6 +1,6 @@
-import React, { SFC } from 'react'
+import React, { PureComponent } from 'react'
 import { StyleSheet } from 'react-native'
-import { injectIntl, InjectedIntlProps } from 'react-intl'
+import { injectIntl } from 'react-intl'
 import { connect, MapStateToProps, MapDispatchToProps } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import {
@@ -8,6 +8,7 @@ import {
     Content,
     Header,
     Body,
+    Button,
     Text,
     List,
     ListItem,
@@ -17,9 +18,16 @@ import {
     Icon,
     Picker,
 } from 'native-base'
+import autobind from 'autobind-decorator'
 
+import PushForm from 'components/PushForm'
 import { AppState, ReduxAction } from 'store/types'
-import { selectTheme, setTheme } from 'store/settings'
+import {
+    selectTheme,
+    selectPushSettings,
+    setTheme,
+    updatePushSettings,
+} from 'store/settings'
 import { selectLocale, setLocale } from 'store/language'
 import config from 'config'
 import { themes } from 'themes'
@@ -28,6 +36,7 @@ import {
     SettingsProps,
     SettingsConnectedProps,
     SettingsActionCreators,
+    SettingsState,
 } from './types'
 
 const Item = Picker.Item
@@ -38,74 +47,6 @@ const styles = StyleSheet.create({
     },
 })
 
-export const Settings: SFC<SettingsProps & InjectedIntlProps> = ({
-    intl,
-    theme,
-    locale,
-    changeTheme,
-    changeLocale,
-}) => (
-    <Container>
-        <Header>
-            <Body>
-                <Text>{intl.formatMessage(messages.title)}</Text>
-            </Body>
-        </Header>
-        <Content>
-            <List style={styles.list}>
-                <ListItem icon>
-                    <Left>
-                        <Icon name="color-palette" />
-                    </Left>
-                    <Body>
-                        <Text>{intl.formatMessage(messages.theme)}</Text>
-                    </Body>
-                    <Right>
-                        <Picker
-                            iosHeader={intl.formatMessage(messages.theme)}
-                            mode="dialog"
-                            selectedValue={theme}
-                            onValueChange={changeTheme}
-                        >
-                            {Object.keys(themes).map((name, index) => (
-                                <Item label={name} value={name} key={index} />
-                            ))}
-                        </Picker>
-                    </Right>
-                </ListItem>
-                <ListItem icon>
-                    <Left>
-                        <Icon name="globe" />
-                    </Left>
-                    <Body>
-                        <Text>{intl.formatMessage(messages.language)}</Text>
-                    </Body>
-                    <Right>
-                        <Picker
-                            iosHeader={intl.formatMessage(messages.language)}
-                            mode="dialog"
-                            selectedValue={locale}
-                            onValueChange={changeLocale}
-                        >
-                            {config.LANGUAGE.SUPPORTED_LOCALES.map(
-                                (name, index) => (
-                                    <Item
-                                        label={intl.formatMessage(
-                                            messages[name],
-                                        )}
-                                        value={name}
-                                        key={index}
-                                    />
-                                ),
-                            )}
-                        </Picker>
-                    </Right>
-                </ListItem>
-            </List>
-        </Content>
-    </Container>
-)
-
 const mapStateToProps: MapStateToProps<
     SettingsConnectedProps,
     SettingsProps,
@@ -113,6 +54,7 @@ const mapStateToProps: MapStateToProps<
 > = (state: AppState) => ({
     theme: selectTheme(state),
     locale: selectLocale(state),
+    pushSettings: selectPushSettings(state),
 })
 
 const mapDispatchToProps: MapDispatchToProps<
@@ -121,11 +63,130 @@ const mapDispatchToProps: MapDispatchToProps<
 > = (dispatch: Dispatch<ReduxAction>) =>
     bindActionCreators(
         {
-            changeLocale: setLocale,
-            changeTheme: setTheme,
+            setLocale,
+            setTheme,
+            updatePushSettings,
         },
         dispatch,
     )
+
+export class Settings extends PureComponent<SettingsProps, SettingsState> {
+    state = {
+        pushChanged: false,
+        pushSettings: this.props.pushSettings,
+    }
+
+    @autobind
+    handlePushFormChange(key: string, value: string) {
+        this.setState({
+            pushChanged: true,
+            pushSettings: {
+                ...this.state.pushSettings,
+                [key]: value,
+            },
+        })
+    }
+
+    @autobind
+    handleSubmitForms() {
+        if (this.state.pushChanged) {
+            this.props.updatePushSettings(this.state.pushSettings)
+        }
+    }
+
+    render() {
+        const { intl, theme, locale } = this.props
+
+        return (
+            <Container>
+                <Header>
+                    <Body>
+                        <Text>{intl.formatMessage(messages.title)}</Text>
+                    </Body>
+                    {this.state.pushChanged && (
+                        <Right>
+                            <Button
+                                transparent
+                                onPress={this.handleSubmitForms}
+                            >
+                                <Icon name="cloud-upload" />
+                            </Button>
+                        </Right>
+                    )}
+                </Header>
+                <Content>
+                    <List style={styles.list}>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="color-palette" />
+                            </Left>
+                            <Body>
+                                <Text>
+                                    {intl.formatMessage(messages.theme)}
+                                </Text>
+                            </Body>
+                            <Right>
+                                <Picker
+                                    iosHeader={intl.formatMessage(
+                                        messages.theme,
+                                    )}
+                                    mode="dialog"
+                                    selectedValue={theme}
+                                    onValueChange={this.props.setTheme}
+                                >
+                                    {Object.keys(themes).map((name, index) => (
+                                        <Item
+                                            label={name}
+                                            value={name}
+                                            key={index}
+                                        />
+                                    ))}
+                                </Picker>
+                            </Right>
+                        </ListItem>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="globe" />
+                            </Left>
+                            <Body>
+                                <Text>
+                                    {intl.formatMessage(messages.language)}
+                                </Text>
+                            </Body>
+                            <Right>
+                                <Picker
+                                    iosHeader={intl.formatMessage(
+                                        messages.language,
+                                    )}
+                                    mode="dialog"
+                                    selectedValue={locale}
+                                    onValueChange={this.props.setLocale}
+                                >
+                                    {config.LANGUAGE.SUPPORTED_LOCALES.map(
+                                        (name, index) => (
+                                            <Item
+                                                label={intl.formatMessage(
+                                                    messages[name],
+                                                )}
+                                                value={name}
+                                                key={index}
+                                            />
+                                        ),
+                                    )}
+                                </Picker>
+                            </Right>
+                        </ListItem>
+                    </List>
+                    <PushForm
+                        intl={intl}
+                        data={this.state.pushSettings}
+                        onChange={this.handlePushFormChange}
+                    />
+                </Content>
+            </Container>
+        )
+    }
+}
 
 export default injectIntl(
     connect(mapStateToProps, mapDispatchToProps)(Settings),
